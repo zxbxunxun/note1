@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列表动画</title>
+  <script src="./../../lib/vue.js"></script>
+  <style>
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      line-height: 30px;
+      padding-left: 10px;
+      margin: 5px;
+      border: 1px dashed #999;
+      list-style: none;
+      width: 100%;
+    }
+
+    li:hover {
+      background-color: green;
+      border-color: green;
+      transition: all 0.8s ease;
+    }
+
+    .v-enter,
+    .v-leave-to {
+      transform: translateY(80px);
+      opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.8s ease;
+
+    }
+
+    .move {
+      transition: all 0.8s ease;
+    }
+
+    .v-leave-active {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <label for="id">Id</label>
+      <input type="text" name="id" id="id" v-model="id">
+
+      <label for="name">name</label>
+      <input type="text" name="name" id="name" v-model="name">
+
+      <input type="button" value="添加" @click="add">
+    </div>
+    <!-- <ul> -->
+    <!-- appear 渲染页面  通过tag设置transition-group渲染为什么样的元素-->
+    <transition-group appear tag="ul">
+      <li v-for="(item , index) in lists" :key="index">
+        {{ item.id }} --- {{ item.name }}
+        <input type="button" value="删除" @click="del(index)">
+      </li>
+    </transition-group>
+    <!-- </ul> -->
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        id: '',
+        name: '',
+        lists: [
+          { id: 1, name: '秦始皇' },
+          { id: 2, name: '唐太宗' },
+          { id: 3, name: '汉武帝' }
+        ]
+      },
+      methods: {
+        add() {
+          this.lists.push({ id: this.id, name: this.name })
+          this.id = this.name = ' '
+        },
+        del(i) {
+          this.lists.splice(i, 1)
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>

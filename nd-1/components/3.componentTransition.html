@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组建切换</title>
+  <style>
+    .v-enter,
+    .v-leave-to {
+      transform: translateX(150px);
+      opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.5s ease;
+    }
+  </style>
+  <script src="./../../lib/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <a href="" @click.prevent="compName='login'">登陆</a>
+    <a href="" @click.prevent="compName='sign'">注册</a>
+
+    <!-- 运用component标签切换组件 -->
+
+    <!-- 组件切换动画只需要用transition标签包裹组件即可 并且不需要绑定Key -->
+    <!-- 应该设置动画模式，否则还未出去即进入的问题 -->
+    <transition mode="out-in">
+      <component :is="compName"></component>
+    </transition>
+  </div>
+  <script>
+
+    Vue.component('login', {
+      template: '<h3>登陆组件</h3>'
+    })
+
+    Vue.component('sign', {
+      template: '<h3>注册组件</h3>'
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        flag: true,
+        compName: 'login'
+      }
+    })
+
+  </script>
+</body>
+
+</html>

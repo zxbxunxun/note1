@@ -1,0 +1,46 @@
+input[type="text"]{
+  height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+}
+input[type="button"]{
+  height: 28px;
+  border: none;
+  letter-spacing: 0.2em;
+  word-spacing: 0.2em;
+  cursor: pointer;
+  outline: none;
+  background-color: #437dde;
+  color: #f1f1f1;
+}
+input[type="button"]:hover{
+  background-color: #6195ff;
+}
+input[type="button"]:active{
+  background: #0749b7;
+}
+label,input{
+  vertical-align: middle;
+}
+input,
+textarea{
+  border-radius: 5px;
+  outline: none;
+  border: 2px solid #f1f1f1;
+  background: #f1f1f1;
+  box-shadow: none;
+}
+input[type="text"]:focus,
+textarea:focus{
+  background: #ffffff;
+  border-color:#8db8ff;
+}
+input[type="button"].del{
+  background: #dc2a06;
+}
+input[type="button"].del:hover{
+  background-color: #e46950;
+}
+input[type="button"].del:active{
+  background: #ca2f10;
+}

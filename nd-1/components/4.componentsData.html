@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父子组件通信</title>
+  <style>
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    li:last-of-type {
+      border: none;
+    }
+
+    .content-box {
+      border: 1px solid #eee;
+      padding: 10px;
+      box-shadow: 0 0 5px 5px #eee;
+    }
+
+    .username {
+      font-size: 12px;
+    }
+
+    .head-username {
+      margin: 10px;
+      vertical-align: middle;
+      line-height: 30px;
+    }
+
+    .head-username input {
+      height: 30px;
+    }
+
+    label {
+      display: block;
+      line-height: 30px;
+    }
+  </style>
+  <script src="./../../lib/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <usercontent @changecontents="addContent"></usercontent>
+
+    <div class="content">
+      <ul class="content-box">
+        <li v-for="item in contents">
+          <div>
+            <span class="username">{{ item.username + ':' }}</span>
+          </div>
+          <p class="content">{{ item.content }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <template id="head">
+    <div class="head-box">
+
+      <div class="head-username">
+        <label for="username">用户名</label>
+        <input type="text" name="username" id="username" v-model="username">
+      </div>
+
+      <div class="head-content">
+        <label for="usercontent">评论</label>
+        <textarea id="usercontent" cols="30" rows="10" v-model="content"></textarea>
+      </div>
+
+      <input type="button" value="发表评论" @click="submitContent">
+
+    </div>
+  </template>
+  <script>
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        contents: [
+          { id: 1, username: 'weenie', content: 'hello world' },
+          { id: 2, username: 'bob', content: 'this is a vue program' }
+        ]
+      },
+      methods: {
+        addContent(content) {
+          this.contents.push(content)
+          // console.log(content);
+        }
+      },
+      components: {
+        usercontent: {
+          template: '#head',
+          data() {
+            return {
+              username: '',
+              content: ''
+            }
+          },
+
+          methods: {
+            submitContent() {
+              const content = {
+                username: this.username,
+                content: this.content
+              }
+              this.username = this.content = ''
+              this.$emit('changecontents', content)
+            }
+          }
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>

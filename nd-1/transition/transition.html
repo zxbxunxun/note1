@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue 动画</title>
+  <style>
+    .ball {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: orange;
+    }
+  </style>
+  <script src="./../../lib/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="button" value="动画" @click="flag = !flag">
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+      <div v-show="flag" class="ball">h</div>
+    </transition>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        flag: false,
+        count:0
+      },
+      methods: {
+        beforeEnter(el) {
+          // 初始位置
+          el.style.transform = 'translate(0,0)'
+        },
+        enter(el, done) {
+          el.offsetLeft
+          // 过场动画
+
+          el.style.transform = 'translate(100px, 200px)'
+
+          el.style.transition = 'all 0.5s'
+          done();
+        },
+        afterEnter(el) {
+          // 过场结束
+          // el.style.
+          this.flag = !this.flag;
+        }
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>

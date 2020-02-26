@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表查询</title>
+  <link rel="stylesheet" href="./../input.css">
+  <link rel="stylesheet" href="./tq.css">
+  <script src="./../../lib/vue.js"></script>
+  <style>
+    
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="opt-box">
+      <ul class="opt-lists">
+        <!-- 产品编号 -->
+        <li>
+          <label for="pId">产品编号</label>
+          <input type="text" name="productId" id="pId" v-model="id">
+        </li>
+
+        <!-- 产品名称 -->
+        <li>
+          <label for="pName">产品名称</label>
+          <!-- vue 自定义指令传入参数 ，如果不是字符串则在data上按变量查找 -->
+          <input type="text" name="productName" id="pName" v-model="name" v-color="'green'">
+        </li>
+
+        <!-- 添加产品 -->
+        <li>
+          <input type="button" value="添加" @click="addProducts">
+        </li>
+
+        <!-- 查询产品 -->
+        <li>
+          <label for="pQuery">按名称查询</label>
+          <input type="text" name="productQuery" id="pQuery" v-model="qKey" v-focus v-color>
+          <input type="button" value="查询" @click="searchProducts(qKey)">
+        </li>
+      </ul>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>添加时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in searchProducts(qKey)" v-cloak :key="item.id">
+            <td >{{ item.id }}</td>
+            <td v-fontweight="200">{{ item.name }}</td>
+            <td v-fontsize="'12px'">{{ item.cdate | dateFormata | dateStr }}</td>
+            <td>
+              <input type="button" value="删除" class="del" @click="delProduct(item.id)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="./tq.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>本地缓存</title>
+  <link rel="stylesheet" href="./../input.css">
+  <style>
+    ul,
+    li {
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .lists {
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 5px 5px #eee;
+    }
+
+    .lists .username {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .lists .user-content {
+      font-size: 14px;
+      text-indent: 2em;
+    }
+
+    textarea {
+      vertical-align: top;
+      margin-bottom: 20px;
+      resize: none;
+    }
+
+    .head {
+      text-align: center;
+    }
+
+    .v-enter,
+    .v-leave-to {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.8s ease;
+
+    }
+  </style>
+  <script src="./../../lib/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+
+      <head-temp @func="getContents"></head-temp>
+
+      <transition-group tag="ul" class="lists" v-show="lists.length">
+        <li v-for="item in lists" :key="item.id">
+          <p class="username">{{ item.user}}</p>
+          <p class="user-content">{{ item.content }}</p>
+        </li>
+      </transition-group>
+    </div>
+  </div>
+
+
+  <!-- 组件 -->
+  <template id="temp1">
+    <div class="head">
+      <div>
+        <p for="username">用户名</p>
+        <input type="text" id="username" v-model="user">
+      </div>
+
+      <div>
+        <p for="content">内容</p>
+        <textarea name="content" id="content" cols="30" rows="10" v-model="content"></textarea>
+      </div>
+
+      <div>
+        <input type="button" value="发表评论" @click="postContent">
+      </div>
+
+    </div>
+  </template>
+
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        lists: [
+          { id: Date.now(), user: 'weenie', content: 'hello world' }
+        ]
+      },
+      methods: {
+        getContents() {
+          this.lists = JSON.parse(localStorage.getItem('cmds') || '[]')
+        }
+      },
+      created() {
+        this.getContents();
+      },
+      components: {
+        headTemp: {
+          template: '#temp1',
+          data() {
+            return {
+              user: '',
+              content: ''
+            }
+          },
+          methods: {
+            postContent() {
+              let lists = JSON.parse(localStorage.getItem('cmds') || '[]')
+              console.log(lists);
+              const content = {
+                id: Date.now(),
+                user: this.user,
+                content: this.content
+              }
+              lists.unshift(content);
+              localStorage.setItem('cmds', JSON.stringify(lists));
+              this.user = this.content = ''
+              this.$emit('func')
+            }
+          }
+        }
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>

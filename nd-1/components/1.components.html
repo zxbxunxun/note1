@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建全局组建的方式</title>
+  <script src="./../../lib/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <comp1></comp1>
+    <comp2></comp2>
+    <comp3></comp3>
+
+    <comp4></comp4>
+
+    <comp5></comp5>
+
+  </div>
+
+  <template id="tp2">
+    <h3>template component</h3>
+  </template>
+
+  <template id="tp3">
+    <h3>私有组建模版</h3>
+  </template>
+
+  <script>
+
+    // 1.创建全局组建
+    const tp1 = Vue.extend({
+      template: '<h3>hello world</h3>'
+    })
+    Vue.component('comp1', tp1)
+
+    // 2.component直接创建组建
+    Vue.component('comp2', Vue.extend({
+      template: '<h3>component 2</h3>'
+    }))
+
+    // component 简写
+    Vue.component('comp3', {
+      template: '<h3>component 3</h3>'
+    })
+
+    // 3.运用vue template模版
+    Vue.component('comp4', {
+      template: '#tp2'
+    })
+
+
+    const vm = new Vue({
+      el: '#app',
+      // 创建私有组建
+      components: {
+        // 这是Vue实例中的私有组建
+        comp5: {
+          template: '#tp3'
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
