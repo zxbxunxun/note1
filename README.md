@@ -1,24 +1,12 @@
 # vue-project1
 
-## Project setup
-```
-npm install
-```
+## 路由懒加载
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+```javascript
 
-### Compiles and minifies for production
-```
-npm run build
-```
+{
+  path:'/home',
+  component:()=>import('./Components/Home.vue')
+}
 
-### Lints and fixes files
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
