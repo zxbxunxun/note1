@@ -1,17 +1,18 @@
 <template>
   <div id="app">
     <h1>这是一个vue 项目</h1>
-    <Hello></Hello>
+    <router-link to="/home">首页</router-link>
+    <router-link to="/about">关于</router-link>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello.vue';
 export default {
   name: 'App',
-  components: {
-    Hello
-  }
+  components: {}
 }
 </script>
 
