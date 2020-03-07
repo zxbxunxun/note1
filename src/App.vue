@@ -3,21 +3,37 @@
     <h1>this is a vue project</h1>
     <router-view></router-view>
     <tabbar>
-      <tabbar-item path="/home">
-        <span slot="item-icon">1</span>
-        <span slot="item-des">首页</span>
+      <tabbar-item activeColor="rgb(108,190,102)" path="/home">
+        <span slot="item-icon" class="item-icon">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-shouye"></use>
+          </svg>
+        </span>
+        <span slot="item-des" class="item-text">首页</span>
       </tabbar-item>
-      <tabbar-item path="/category">
-        <span slot="item-icon">2</span>
-        <span slot="item-des">分类</span>
+      <tabbar-item activeColor="rgb(108,190,102)" path="/category">
+        <span slot="item-icon" class="item-icon">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-paihangbang"></use>
+          </svg>
+        </span>
+        <span slot="item-des" class="item-text">分类</span>
       </tabbar-item>
-      <tabbar-item path="/search">
-        <span slot="item-icon">3</span>
-        <span slot="item-des">搜索</span>
+      <tabbar-item activeColor="rgb(108,190,102)" path="/search">
+        <span slot="item-icon" class="item-icon">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-sousuo"></use>
+          </svg>
+        </span>
+        <span slot="item-des" class="item-text">搜索</span>
       </tabbar-item>
-      <tabbar-item path="/profile">
-        <span slot="item-icon">4</span>
-        <span slot="item-des">我的</span>
+      <tabbar-item activeColor="rgb(108,190,102)" path="/profile">
+        <span slot="item-icon" class="item-icon">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-wodeguanzhu"></use>
+          </svg>
+        </span>
+        <span slot="item-des" class="item-text">我的</span>
       </tabbar-item>
     </tabbar>
   </div>
@@ -45,5 +61,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   font-size: 12px;
+}
+.item-icon {
+  font-size: 18px;
+  transform: scale(1.5);
+  padding: 0;
+  margin: 0;
+}
+.item-text {
+  font-size: 10px;
 }
 </style>

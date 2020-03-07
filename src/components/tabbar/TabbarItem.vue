@@ -35,18 +35,13 @@ export default {
 
 <style>
 .tab-bar-item {
-  flex: 1;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 3px 0;
+  flex: 1;
+}
+.tab-bar-item {
+  padding: 6px 0 3px;
 }
 .tab-bar-item > * {
-  flex: 1;
-  text-align: center;
-  font-size: 10px;
-  vertical-align: bottom;
-  font-weight: 500;
+  display: block;
 }
 </style>
