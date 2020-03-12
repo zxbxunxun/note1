@@ -2,57 +2,23 @@
   <div id="app">
     <h1>this is a vue project</h1>
     <router-view></router-view>
-    <tabbar>
-      <tabbar-item activeColor="rgb(108,190,102)" path="/home">
-        <span slot="item-icon" class="item-icon">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-shouye"></use>
-          </svg>
-        </span>
-        <span slot="item-des" class="item-text">首页</span>
-      </tabbar-item>
-      <tabbar-item activeColor="rgb(108,190,102)" path="/category">
-        <span slot="item-icon" class="item-icon">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-paihangbang"></use>
-          </svg>
-        </span>
-        <span slot="item-des" class="item-text">分类</span>
-      </tabbar-item>
-      <tabbar-item activeColor="rgb(108,190,102)" path="/search">
-        <span slot="item-icon" class="item-icon">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-sousuo"></use>
-          </svg>
-        </span>
-        <span slot="item-des" class="item-text">搜索</span>
-      </tabbar-item>
-      <tabbar-item activeColor="rgb(108,190,102)" path="/profile">
-        <span slot="item-icon" class="item-icon">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-wodeguanzhu"></use>
-          </svg>
-        </span>
-        <span slot="item-des" class="item-text">我的</span>
-      </tabbar-item>
-    </tabbar>
+    <!-- tabbar导航 -->
+    <main-tabbar></main-tabbar>
   </div>
 </template>
 
 <script>
-import Tabbar from './components/tabbar/Tabbar.vue'
-import TabbarItem from './components/tabbar/TabbarItem'
+import MainTabbar from 'components/MainTabbar'
 export default {
   name: 'App',
   components: {
-    Tabbar,
-    TabbarItem
+    MainTabbar
   }
 }
 </script>
 
 <style>
-@import './assets/css/base.css';
+@import 'assets/css/base.css';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
