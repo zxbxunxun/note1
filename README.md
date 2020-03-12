@@ -22,3 +22,10 @@ const store = new Vuex.Store({
 
 export default store
 ```
+
+## vue 响应式处理非响应式数据
+
+```javascript
+Vue.set(key, value)
+Vue.delete(object, key)
+```
