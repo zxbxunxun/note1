@@ -1,10 +1,10 @@
 import Vue from 'vue'
-
+import { UPDATENAME, ADDPROPERTY } from './mutationsType'
 export default {
-  updateName(state) {
+  [UPDATENAME](state) {
     state.students[0].name = 'aero'
   },
-  addProperty(state) {
+  [ADDPROPERTY](state) {
     // state.students[0].address = 'shangHai'
     Vue.set(state.students[0], 'address', 'shangHai')
   }
