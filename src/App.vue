@@ -26,15 +26,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  font-size: 12px;
-}
-.item-icon {
-  font-size: 18px;
-  transform: scale(1.5);
-  padding: 0;
-  margin: 0;
-}
-.item-text {
-  font-size: 10px;
 }
 </style>

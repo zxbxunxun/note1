@@ -54,4 +54,14 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.item-icon {
+  font-size: 18px;
+  transform: scale(1.5);
+  padding: 0;
+  margin: 0;
+}
+.item-text {
+  font-size: 10px;
+}
+</style>
