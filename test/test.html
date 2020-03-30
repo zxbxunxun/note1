@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // var arr = [5, 29, 1, 0, 2, 11]
+    // for (var i = 0; i < arr.length - 1; i++) {
+    //   for (var j = 0; j < arr.length - 1 - i; j++) {
+    //     if (arr[j] > arr[j + 1]) {
+    //       const m = arr[j]
+    //       arr[j] = arr[j + 1]
+    //       arr[j + 1] = m
+    //     }
+    //   }
+
+    // }
+    // console.log(arr);
+
+    // var arr1 = [1, 2, 3, 4, 5, 6, 7];
+
+    // var c = Math.floor(arr1.length / 2)
+    // var l = arr1.length - 1
+    // for (let i = 0; i < c; i++) {
+    //   const a = arr1[i]
+    //   arr1[i] = arr1[l - i];
+    //   arr1[l - i] = a
+    // }
+    // console.log(arr1);
+
+    /**
+ *
+ * 研究分组排序问题
+ * 1.已知 数组 [{a:a,b:1},{a:a,b:0},{a:a,b:3},{a:a,b:2},{c:c,b:5},{c:c,b:1},{c:c,b:4},{d:c,b:5},{c:c,b:1}]
+ * 2.按照数组内每一项的a的key分组 并对其进行排序
+ */
+
+
+    let arr3 = [
+      { d: 3, b: 99 },
+      { a: 1, b: 1 },
+      { c: 2, b: 5 },
+      { a: 1, b: 3 },
+      { a: 1, b: 2 },
+      { c: 2, b: 4 },
+      { d: 3, b: 5 },
+      { a: 1, b: 11 },
+      { a: 1, b: 1 },
+      { c: 2, b: 5 },
+      { a: 1, b: 3 },
+      { a: 1, b: 2 },
+      { c: 2, b: 4 },
+      { d: 3, b: 5 },
+      { a: 1, b: 11 },
+      { a: 1, b: 11 },
+      { c: 2, b: 11 },
+      { d: 3, b: 11 },
+      { a: 1, b: 0 },
+      { d: 3, b: 1 },
+      { a: 1, b: 12 },
+      { a: 1, b: 9 },
+      { a: 1, b: 6 },
+      { c: 2, b: 1 },
+      { c: 2, b: 10 },
+      { a: 1, b: 11 },
+      { a: 1, b: 12 },
+      { c: 2, b: 10 },
+      { d: 3, b: 22 },
+      { a: 1, b: 33 },
+      { d: 3, b: 99 },
+      { a: 1, b: 100 },
+    ];
+    function arrSort(arr) {
+      let items = [],
+        len = arr.length;
+      let s = 0;
+      let n = Date.now()
+      for (let k = 0; k < arr.length; k++) {
+        let ele = arr[k];
+        let keys = Object.keys(ele);
+        if (!items.length) {
+          items.push(ele);
+        } else {
+          let add = false;
+          let i = 0;
+          for (i; i < items.length; i++) {
+            s++;
+            const item = items[i];
+            if (Object.keys(item).toString() == keys.toString()) {
+              add = true;
+              if (items[i].b > ele.b) {
+                items.splice(i, 0, ele);
+                break;
+              }
+              if (i < items.length - 1) {
+                if (Object.keys(item).toString() === keys.toString() && Object.keys(items[i + 1]).toString() !== keys.toString()) {
+                  items.splice(i + 1, 0, ele)
+                  break;
+                }
+              }
+            }
+
+          }
+          if (!add) {
+            items.push(ele);
+          }
+        }
+      }
+      console.log(s);
+      console.log(Date.now() - n);
+      return items;
+    }
+    let items = arrSort(arr3);
+    console.log(items);
+
+    function sortArrElement(arr) {
+      const len = arr.length
+      for (let i = 0; i < len - 1; i++) {
+        for (let k = 0; k < len - 1 - i; k++) {
+          if (arr[k].a == arr[k + 1].a) {
+            if (arr[k].b > arr[k + 1].b) {
+              const m = arr[k];
+              arr[k] = arr[k + 1]
+              arr[k + 1] = m;
+            }
+          }
+        }
+      }
+    }
+    sortArrElement(arr3)
+    console.log(arr3);
+    console.log('===================================');
+
+
+    /**
+ *
+ * 利用二叉搜索树实现数据分组排序
+ */
+
+    function BinarySearchTree() {
+      //  创建节点方法
+      var Node = function (key) {
+        this.key = key;
+        this.left = null;
+        this.right = null;
+      };
+      // 根结点
+      var root = null;
+      this.insert = function (key) {
+        var node = new Node(key);
+        var insertNode = function (node, newNode) {
+          if (newNode.key < node.key) {
+            if (node.left === null) {
+              node.left = newNode;
+            } else {
+              insertNode(node.left, newNode);
+            }
+          } else {
+            if (node.right === null) {
+              node.right = newNode;
+            } else {
+              insertNode(node.right, newNode);
+            }
+          }
+        };
+        if (root === null) {
+          root = node;
+        } else {
+          insertNode(root, node);
+        }
+      };
+
+      this.getNode = function () {
+        return root
+      }
+
+      this.iot = function (callback) {
+        var iotn = function (node, callback) {
+          console.log('0', node);
+          if (node !== null) {
+            console.log('1', node);
+            iotn(node.left, callback)
+            console.log('2');
+            callback(node.key)
+            iotn(node.right, callback)
+          }
+        }
+        iotn(root, callback)
+      }
+    }
+
+    var callback = function (v) {
+      console.log('v', v);
+    }
+
+
+    var bts = new BinarySearchTree();
+    bts.insert(1)
+    bts.insert(5)
+    bts.insert(11)
+    bts.insert(2)
+    bts.insert(8)
+    bts.insert(0)
+    bts.insert(3)
+    bts.insert(22)
+    bts.insert(33)
+    console.log(bts.getNode());
+    bts.iot(callback)
+  </script>
+</body>
+
+</html>

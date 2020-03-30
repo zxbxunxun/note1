@@ -19,28 +19,30 @@ export default {
   },
   methods: {
     goRoute() {
-      this.path && this.$router.push(this.path)
+      this.path && this.$router.push(this.path);
     }
   },
   computed: {
     isActivePath() {
-      return this.$route.path === this.path
+      return this.$route.path === this.path;
     },
     activePathStyle() {
-      return this.isActivePath ? { color: this.activeColor } : {}
+      return this.isActivePath ? { color: this.activeColor } : {};
     }
   }
-}
+};
 </script>
 
 <style>
 .tab-bar-item {
   text-align: center;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0 3px;
+  align-items: center;
 }
-.tab-bar-item {
-  padding: 6px 0 3px;
-}
+
 .tab-bar-item > * {
   display: block;
 }

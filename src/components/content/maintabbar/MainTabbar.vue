@@ -37,14 +37,15 @@
 </template>
 
 <script>
-import Tabbar from "components/common/tabbar/Tabbar";
-import TabbarItem from "components/common/tabbar/TabbarItem";
+import 'assets/font/iconfont';
+import Tabbar from 'components/common/tabbar/Tabbar';
+import TabbarItem from 'components/common/tabbar/TabbarItem';
 
 export default {
-  name: "MainTabbar",
+  name: 'MainTabbar',
   data() {
     return {
-      tabbarColor: "rgb(108, 190, 102)"
+      tabbarColor: 'rgb(108, 190, 102)'
     };
   },
   components: {
@@ -54,4 +55,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.item-icon {
+  font-size: 24px;
+  padding: 0;
+  margin: 0;
+  flex: 7;
+}
+.item-text {
+  font-size: 10px;
+  flex: 3;
+}
+</style>

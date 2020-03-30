@@ -2,8 +2,8 @@
 
 :root {
   --color-text: #666666;
-  --color-hight-text: #ff5777;
-  --color-tint: #ff8198;
+  --color-hight-text: rgb(31, 133, 23);
+  --color-tint: rgb(108, 190, 102);
   --color-background: #ffffff;
   --font-size: 14px;
   --line-height: 1.5;
@@ -14,7 +14,6 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -51,4 +50,12 @@ a {
 
 .right {
   float: right;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
